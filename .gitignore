@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Project outputs
+artifacts/q1/
+artifacts/q2/
+artifacts/q3/
+artifacts/q4/
+models/

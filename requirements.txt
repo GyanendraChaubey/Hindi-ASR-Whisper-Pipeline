@@ -1,0 +1,13 @@
+torch>=2.2.0
+transformers>=4.46.0,<5.0.0
+datasets>=3.0.0
+evaluate>=0.4.3
+accelerate>=1.0.0
+jiwer>=3.0.4
+rapidfuzz>=3.0.0
+librosa>=0.10.2
+soundfile>=0.12.1
+pandas>=2.2.0
+numpy>=1.26.0
+tqdm>=4.66.0
+requests>=2.32.0
