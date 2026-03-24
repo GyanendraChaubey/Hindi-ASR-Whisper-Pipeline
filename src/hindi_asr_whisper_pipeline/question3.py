@@ -235,7 +235,7 @@ def build_fleurs_lexicon(max_per_split: int) -> set[str]:
     lexicon: set[str] = set()
     splits = ["train", "validation", "test"]
     for split in splits:
-        ds = load_dataset("google/fleurs", "hi_in", split=split)
+        ds = load_dataset("google/fleurs", "hi_in", split=split, trust_remote_code=True)
         if max_per_split > 0:
             ds = ds.select(range(min(max_per_split, len(ds))))
         for raw_row in ds:

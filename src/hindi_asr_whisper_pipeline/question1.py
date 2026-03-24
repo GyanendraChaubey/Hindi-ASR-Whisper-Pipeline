@@ -522,7 +522,7 @@ def evaluate_on_fleurs(
     max_samples: int,
 ) -> float:
     processor, model = load_inference_bundle(model_path_or_name, device)
-    fleurs = load_dataset("google/fleurs", "hi_in", split="test")
+    fleurs = load_dataset("google/fleurs", "hi_in", split="test", trust_remote_code=True)
     if max_samples > 0:
         fleurs = fleurs.select(range(min(max_samples, len(fleurs))))
 
