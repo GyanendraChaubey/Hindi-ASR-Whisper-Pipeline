@@ -597,7 +597,7 @@ def finetune_whisper(
         warmup_steps=args.warmup_steps,
         num_train_epochs=args.train_epochs if args.max_steps <= 0 else 1.0,
         max_steps=args.max_steps,
-        evaluation_strategy="epoch",
+        eval_strategy="epoch",
         save_strategy="epoch",
         logging_steps=10,
         predict_with_generate=True,
