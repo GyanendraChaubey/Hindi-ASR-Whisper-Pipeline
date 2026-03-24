@@ -3,7 +3,7 @@ import json
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import pandas as pd
 from datasets import load_dataset
@@ -238,8 +238,9 @@ def build_fleurs_lexicon(max_per_split: int) -> set[str]:
         ds = load_dataset("google/fleurs", "hi_in", split=split)
         if max_per_split > 0:
             ds = ds.select(range(min(max_per_split, len(ds))))
-        for row in ds:
-            for token in extract_tokens(row["transcription"]):
+        for raw_row in ds:
+            row = cast(dict[str, Any], raw_row)
+            for token in extract_tokens(str(row["transcription"])):
                 if ONLY_DEVANAGARI_WORD_RE.match(token):
                     lexicon.add(token)
     return lexicon
