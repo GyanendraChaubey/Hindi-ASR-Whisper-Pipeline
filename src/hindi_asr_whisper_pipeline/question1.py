@@ -602,7 +602,7 @@ def finetune_whisper(
         logging_steps=10,
         predict_with_generate=True,
         generation_max_length=225,
-        fp16=bool(device.type == "cuda"),
+        fp16=device.type == "cuda" and torch.cuda.get_device_capability()[0] >= 7,
         gradient_checkpointing=True,
         remove_unused_columns=False,
         label_names=["labels"],
