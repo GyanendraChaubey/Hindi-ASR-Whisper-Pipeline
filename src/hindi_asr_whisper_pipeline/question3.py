@@ -101,7 +101,7 @@ def parse_args() -> argparse.Namespace:
         "--wordlist-file",
         type=Path,
         default=None,
-        help="Optional unique-word list file (csv/txt/json). If omitted, unique words are derived from corpus.",
+        help="Unique-word list file (csv/txt). Auto-detects 'Unique Words Data - Sheet1.csv' in data/ if present.",
     )
     parser.add_argument(
         "--word-column",
@@ -643,9 +643,20 @@ def run_pipeline(args: argparse.Namespace) -> None:
     domain_freq = build_in_domain_frequency(segments_df)
 
     print("Step 2) Load target word list...")
-    if args.wordlist_file and args.wordlist_file.exists():
-        words = load_word_list(args.wordlist_file.resolve(), args.word_column)
-        word_source = args.wordlist_file.resolve().as_posix()
+    wordlist_file = args.wordlist_file
+    if wordlist_file is None:
+        # Auto-detect the assignment-provided unique-words file in data/
+        for candidate in [
+            repo_root / "data" / "Unique Words Data - Sheet1.csv",
+            repo_root.parent / "Unique Words Data - Sheet1.csv",
+        ]:
+            if candidate.exists():
+                wordlist_file = candidate
+                print(f"  Auto-detected unique-words file: {candidate}")
+                break
+    if wordlist_file and wordlist_file.exists():
+        words = load_word_list(wordlist_file.resolve(), args.word_column)
+        word_source = wordlist_file.resolve().as_posix()
     else:
         words = sorted(domain_freq.keys())
         word_source = "derived_from_transcript_corpus"

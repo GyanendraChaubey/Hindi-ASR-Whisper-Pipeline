@@ -67,7 +67,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input-file",
         type=Path,
-        default=Path("data/question4_transcripts.csv"),
+        default=Path("data/Question 4 - Task.csv"),
         help="CSV containing one reference and multiple model outputs per utterance.",
     )
     parser.add_argument(
@@ -79,13 +79,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--reference-col",
         type=str,
-        default="reference",
+        default="Human",
         help="Reference transcript column name.",
     )
     parser.add_argument(
         "--id-col",
         type=str,
-        default="utterance_id",
+        default="segment_url_link",
         help="Utterance id column. If missing, row index is used.",
     )
     parser.add_argument(
@@ -97,8 +97,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--expected-model-count",
         type=int,
-        default=5,
-        help="Expected number of ASR model columns (Q4 uses five models). Set 0 to disable this check.",
+        default=0,
+        help="Expected number of ASR model columns. Set 0 to auto-detect (default).",
     )
     parser.add_argument(
         "--agreement-threshold",
