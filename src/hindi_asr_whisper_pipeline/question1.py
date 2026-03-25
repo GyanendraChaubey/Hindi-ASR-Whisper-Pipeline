@@ -121,7 +121,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto", help="Inference/training device.")
 
     # Fine-tuning hyperparameters
-    parser.add_argument("--train-epochs", type=float, default=3.0, help="Training epochs when max-steps is not set.")
+    parser.add_argument("--train-epochs", type=float, default=5.0, help="Training epochs when max-steps is not set.")
     parser.add_argument("--max-steps", type=int, default=-1, help="Override number of training steps.")
     parser.add_argument("--learning-rate", type=float, default=1e-5, help="Fine-tuning learning rate.")
     parser.add_argument("--warmup-steps", type=int, default=50, help="Warmup steps.")
@@ -462,7 +462,7 @@ def generate_text(
 
     try:
         with torch.no_grad():
-            predicted_ids = model.generate(features, language="hi", task="transcribe")
+            predicted_ids = model.generate(features, language="hi", task="transcribe", no_repeat_ngram_size=3)
     except Exception as error:
         if current_device.type == "cuda":
             # Some GPU/PyTorch combos fail at runtime; fallback keeps the run alive.
@@ -470,7 +470,7 @@ def generate_text(
             model.to(device_state["device"])
             features = features.to(device_state["device"])
             with torch.no_grad():
-                predicted_ids = model.generate(features, language="hi", task="transcribe")
+                predicted_ids = model.generate(features, language="hi", task="transcribe", no_repeat_ngram_size=3)
         else:
             raise error
 
@@ -595,13 +595,14 @@ def finetune_whisper(
         gradient_accumulation_steps=args.grad_accum,
         learning_rate=args.learning_rate,
         warmup_steps=args.warmup_steps,
+        weight_decay=0.01,
         num_train_epochs=args.train_epochs if args.max_steps <= 0 else 1.0,
         max_steps=args.max_steps,
         eval_strategy="epoch",
         save_strategy="epoch",
         logging_steps=10,
         predict_with_generate=True,
-        generation_max_length=225,
+        generation_max_length=128,
         fp16=False,
         gradient_checkpointing=False,
         remove_unused_columns=False,
