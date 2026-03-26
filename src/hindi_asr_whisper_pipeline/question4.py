@@ -118,6 +118,9 @@ def parse_args() -> argparse.Namespace:
         default=1,
         help="Min support to create an insertion bin between reference positions. Use 1 to include all model-proposed insertions.",
     )
+    # Dummy arguments for CLI compatibility with the standard run command used in other questions
+    parser.add_argument("--manifest-csv", type=Path, default=None, help="Ignored in Q4 (only reads input-file).")
+    parser.add_argument("--device", type=str, default="auto", help="Ignored in Q4 (CPU only text processing).")
     return parser.parse_args()
 
 
