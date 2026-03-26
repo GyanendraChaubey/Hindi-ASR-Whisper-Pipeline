@@ -139,6 +139,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Use internal proxy labels when manual review is unavailable (non-compliant with assignment c).",
     )
+    parser.add_argument(
+        "--device",
+        choices=["auto", "cpu", "cuda"],
+        default="auto",
+        help="Device to run on (added for CLI compatibility).",
+    )
     return parser.parse_args()
 
 
