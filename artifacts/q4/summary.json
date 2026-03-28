@@ -1,0 +1,22 @@
+{
+  "utterances": 46,
+  "models": 6,
+  "total_pairs": 276,
+  "total_improved_pairs": 138,
+  "total_unchanged_pairs": 138,
+  "total_worsened_pairs": 0,
+  "input_file": "/kaggle/working/Hindi-ASR-Whisper-Pipeline/data/Question 4 - Task.csv",
+  "reference_col": "Human",
+  "model_cols": [
+    "Model H",
+    "Model i",
+    "Model k",
+    "Model l",
+    "Model m",
+    "Model n"
+  ],
+  "expected_model_count": 0,
+  "agreement_threshold": 3,
+  "alternative_support_threshold": 1,
+  "insertion_support_threshold": 1
+}

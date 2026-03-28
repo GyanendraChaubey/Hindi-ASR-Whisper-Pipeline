@@ -1,0 +1,16 @@
+{
+  "segments_processed": 4929,
+  "number_conversion_segments": 873,
+  "total_number_conversions": 982,
+  "total_number_skips": 744,
+  "segments_with_english_tags": 100,
+  "total_english_tokens_tagged": 291,
+  "english_tokens_matched_reference_proxy": 27,
+  "english_tokens_unmatched_reference_proxy": 264,
+  "wer_before_number_normalization_percent": 131.026,
+  "wer_after_number_normalization_percent": 131.239,
+  "wer_delta_percent": 0.213,
+  "samples_improved_by_number_normalization": 2,
+  "samples_worsened_by_number_normalization": 216,
+  "samples_unchanged_by_number_normalization": 4711
+}

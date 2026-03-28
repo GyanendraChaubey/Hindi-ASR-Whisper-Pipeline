@@ -1,0 +1,256 @@
+{
+  "counts": {
+    "numeric_rendering": 128,
+    "spelling_or_phonetic_variant": 332,
+    "word_order_or_substitution": 193,
+    "english_or_name_token": 34,
+    "content_insertion": 9,
+    "content_omission": 22
+  },
+  "examples": {
+    "spelling_or_phonetic_variant": [
+      {
+        "recording_id": 270037,
+        "segment_id": 45,
+        "reference": "हाअ",
+        "hypothesis": "हाँ हां",
+        "reasoning": "Near-spelling or phonetic variants are used instead of reference form."
+      },
+      {
+        "recording_id": 661767,
+        "segment_id": 5,
+        "reference": "जी जी जी जी टी जी जी",
+        "hypothesis": "जी जिज़ जे जो जाए जब जै जुज जही चीजिय ज चाहिए",
+        "reasoning": "Near-spelling or phonetic variants are used instead of reference form."
+      },
+      {
+        "recording_id": 255349,
+        "segment_id": 10,
+        "reference": "हां जो",
+        "hypothesis": "हाँ जब हम",
+        "reasoning": "Near-spelling or phonetic variants are used instead of reference form."
+      },
+      {
+        "recording_id": 270037,
+        "segment_id": 51,
+        "reference": "तेनु सूट सूट करता",
+        "hypothesis": "तैनू सूट सुट कर दा हूं",
+        "reasoning": "Near-spelling or phonetic variants are used instead of reference form."
+      },
+      {
+        "recording_id": 661767,
+        "segment_id": 34,
+        "reference": "जी जी जी जी जी जी",
+        "hypothesis": "जी जि जो जाई जु मतलब जे जै",
+        "reasoning": "Near-spelling or phonetic variants are used instead of reference form."
+      }
+    ],
+    "word_order_or_substitution": [
+      {
+        "recording_id": 443952,
+        "segment_id": 20,
+        "reference": "धर्मशाला धर्मशाला",
+        "hypothesis": "धरम साला ध्रमसालो",
+        "reasoning": "Main issue is substitutions/re-ordering rather than pure insert/delete."
+      },
+      {
+        "recording_id": 1021370,
+        "segment_id": 27,
+        "reference": "हम्म हम्म",
+        "hypothesis": "हु हू हॅ",
+        "reasoning": "Main issue is substitutions/re-ordering rather than pure insert/delete."
+      },
+      {
+        "recording_id": 238123,
+        "segment_id": 4,
+        "reference": "अच्छाह्म्म",
+        "hypothesis": "अच्छा",
+        "reasoning": "Main issue is substitutions/re-ordering rather than pure insert/delete."
+      },
+      {
+        "recording_id": 238123,
+        "segment_id": 32,
+        "reference": "हम्म हम्म",
+        "hypothesis": "हु हू",
+        "reasoning": "Main issue is substitutions/re-ordering rather than pure insert/delete."
+      },
+      {
+        "recording_id": 254219,
+        "segment_id": 2,
+        "reference": "हम्मह",
+        "hypothesis": "इम्म्ड",
+        "reasoning": "Main issue is substitutions/re-ordering rather than pure insert/delete."
+      }
+    ],
+    "numeric_rendering": [
+      {
+        "recording_id": 583544,
+        "segment_id": 12,
+        "reference": "अपने आसपास एक सड़क पर रहने वाले जानवर उनको देखकर लगता है कि इतने अच्छा जिंदगी हमारा है बेचारे जो ऐसी जिंदगी जी इस तरह चीजें लगती ह",
+        "hypothesis": "अपने आपसा पास तरीम परदाने में वजानों सबकितर और प्रुगाम मेरे सकते हैं हां उनको देखिर लगता है किने कितने सच्छा जिन्दी हमारा हा कि एक बचारे हु वाई है जी जो ज़िन जन्हीं जे तो इसरा के चीजें मे लोगे हो गई",
+        "reasoning": "Number words/digits are rendered differently from reference."
+      },
+      {
+        "recording_id": 1021370,
+        "segment_id": 33,
+        "reference": "यह किस ्से सुनाते हूं मैं हमारे बड़े में किस की बात है एक टीचर आता है हमें पढ़ना के लिए तो उसे दिन टीचर गुस्से में भी था घर से लड़ झगड़ के आया होगा",
+        "hypothesis": "तो मैं आपके साथ में किस्सा शेयर करना चाहूंगा एक किक्स्षा ऐसा है था हमारा कि एग बार टीचर आता हे हमें पढ़ाने के लिए और उस दिन की बहात है कि कि सीथ गाफी ज्यादा गुस्य मे भी थे हो सकता थै शायद घर से कहीं लड़ ज़्यडागडर के हाँ होगी",
+        "reasoning": "Number words/digits are rendered differently from reference."
+      },
+      {
+        "recording_id": 856801,
+        "segment_id": 54,
+        "reference": "जहां तक मेरे याद है तो मैंने धूप के नीचे ज्यादा खेला नहीं है जो क्रिकेट खेलते थे तो हम शाम को खेलते थे नहीं तो फिर सुबह खेलने थे आठ बजे तक नौ बजे तक सुबह छः से घूमने जाते थे तब",
+        "hypothesis": "तो जहाँ तक मैंजे याद है तु मैने दूपके नीचे ज्याधा खेला नहीं है क्योंकि क्रकेट भी खैल दे थे हम साम को खाल था तीनें तब ऐसे सुबह सू भा घेल ते तै हैं आटबज ताक नौवज़ त का सॉब हँआ चाह बचीस है होंगे घुमने",
+        "reasoning": "Number words/digits are rendered differently from reference."
+      },
+      {
+        "recording_id": 443952,
+        "segment_id": 9,
+        "reference": "केदारनाथ पे गया हूं मैं एक बार",
+        "hypothesis": "ये जार नक्तर ग्राँव में बार",
+        "reasoning": "Number words/digits are rendered differently from reference."
+      },
+      {
+        "recording_id": 988596,
+        "segment_id": 19,
+        "reference": "साल में मम्मी धोती थी न बैग को दस दिन में पंद्रह दिन पे जब बैग धोती थी तो उस समय वो निकलता था पूरी पराठे जो भी रहते थे तो उसके लिए बहुत डांट पड़ती थी मतलब जो यह करती हो खाना नहीं खाती उसके लिए कंप्लेंट भी बेसिकली किया गया",
+        "hypothesis": "या मैं एक बार ममीद होती थी न बैक को अगर दध दिन पे पंद दीन तो जब बेक दोते थे तू उस समय ऊन्निकलता था पूरी पराठे जो भी रहते है ते उतरी हैं से लिए ले बहुत दांट पड़ती हूं थो उन्हें किया करती कि उठाइं नहीं खातीं है कि किसके इसकर ली कंप्लेन भाई ब्रेदिक लोग किजा गया",
+        "reasoning": "Number words/digits are rendered differently from reference."
+      }
+    ],
+    "english_or_name_token": [
+      {
+        "recording_id": 254219,
+        "segment_id": 3,
+        "reference": "REDACTED",
+        "hypothesis": "बैंट",
+        "reasoning": "Errors concentrate around English or named-entity-like tokens."
+      },
+      {
+        "recording_id": 254219,
+        "segment_id": 20,
+        "reference": "REDACTED",
+        "hypothesis": "बैंट",
+        "reasoning": "Errors concentrate around English or named-entity-like tokens."
+      },
+      {
+        "recording_id": 254219,
+        "segment_id": 45,
+        "reference": "REDACTED",
+        "hypothesis": "बैंट",
+        "reasoning": "Errors concentrate around English or named-entity-like tokens."
+      },
+      {
+        "recording_id": 254219,
+        "segment_id": 47,
+        "reference": "REDACTED",
+        "hypothesis": "बिल्कुल",
+        "reasoning": "Errors concentrate around English or named-entity-like tokens."
+      },
+      {
+        "recording_id": 255349,
+        "segment_id": 20,
+        "reference": "REDACTED",
+        "hypothesis": "बिल्कुल",
+        "reasoning": "Errors concentrate around English or named-entity-like tokens."
+      }
+    ],
+    "content_omission": [
+      {
+        "recording_id": 443952,
+        "segment_id": 69,
+        "reference": "धन्यवाद आप से बात",
+        "hypothesis": "धन्हनेवाद",
+        "reasoning": "Hypothesis drops one or more important reference words."
+      },
+      {
+        "recording_id": 754618,
+        "segment_id": 5,
+        "reference": "ये से इस सब",
+        "hypothesis": "येस यैसा",
+        "reasoning": "Hypothesis drops one or more important reference words."
+      },
+      {
+        "recording_id": 856801,
+        "segment_id": 47,
+        "reference": "उम उम हा हा",
+        "hypothesis": "इगो हां",
+        "reasoning": "Hypothesis drops one or more important reference words."
+      },
+      {
+        "recording_id": 1021370,
+        "segment_id": 60,
+        "reference": "हूं हूं हूं हूं",
+        "hypothesis": "हु हू",
+        "reasoning": "Hypothesis drops one or more important reference words."
+      },
+      {
+        "recording_id": 661767,
+        "segment_id": 19,
+        "reference": "जी जी जी हां जी हां जी हां जी",
+        "hypothesis": "जी जि जे जान्यान जैन्जा",
+        "reasoning": "Hypothesis drops one or more important reference words."
+      }
+    ],
+    "content_insertion": [
+      {
+        "recording_id": 443952,
+        "segment_id": 35,
+        "reference": "हां साथ हुआ था",
+        "hypothesis": "आा मतलब ये साथ बात आ जाता है कि",
+        "reasoning": "Hypothesis introduces extra words not present in reference."
+      },
+      {
+        "recording_id": 1021370,
+        "segment_id": 66,
+        "reference": "अच्छा अच्छाअच्छा अच्छा",
+        "hypothesis": "अच्छा अ अक्चा आचचहा इचक्या",
+        "reasoning": "Hypothesis introduces extra words not present in reference."
+      },
+      {
+        "recording_id": 1021370,
+        "segment_id": 26,
+        "reference": "अच्छा हम्म हम्म जी",
+        "hypothesis": "अच्छा हु हूं हॅ हॉ जी",
+        "reasoning": "Hypothesis introduces extra words not present in reference."
+      },
+      {
+        "recording_id": 629868,
+        "segment_id": 32,
+        "reference": "अच्छा जी मैम हो गया",
+        "hypothesis": "अच्छा मैम जी मैंम हो गएता है",
+        "reasoning": "Hypothesis introduces extra words not present in reference."
+      },
+      {
+        "recording_id": 856801,
+        "segment_id": 23,
+        "reference": "और आप कुछ कहन चाहोगे",
+        "hypothesis": "जी और आप कच्छ कहन खाव है",
+        "reasoning": "Hypothesis introduces extra words not present in reference."
+      }
+    ]
+  },
+  "selected_categories": [
+    "spelling_or_phonetic_variant",
+    "word_order_or_substitution",
+    "numeric_rendering",
+    "english_or_name_token",
+    "content_omission",
+    "content_insertion"
+  ],
+  "top3_fixes": [
+    {
+      "error_category": "spelling_or_phonetic_variant",
+      "actionable_fix": "Apply confusion-lexicon correction learned from systematic dev errors (implemented below)."
+    },
+    {
+      "error_category": "word_order_or_substitution",
+      "actionable_fix": "Use segment-boundary-aware re-chunking and LM-assisted rescoring to reduce substitution drift."
+    },
+    {
+      "error_category": "numeric_rendering",
+      "actionable_fix": "Add Hindi number verbalizer/normalizer with context guards (idiom detection) before scoring and downstream use."
+    }
+  ]
+}

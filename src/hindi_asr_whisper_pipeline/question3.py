@@ -637,60 +637,75 @@ def run_pipeline(args: argparse.Namespace) -> None:
     if not (40 <= int(args.review_sample_size) <= 50):
         raise ValueError("Question-3 requires --review-sample-size between 40 and 50.")
 
-    print("Step 1) Build in-domain transcript evidence...")
-    segments_df, preprocess_summary = preprocess_dataset(
-        manifest_csv=manifest_csv,
-        work_dir=work_dir,
-        min_segment_sec=args.min_segment_sec,
-        max_segment_sec=args.max_segment_sec,
-        max_recordings=args.max_recordings,
-        force_rebuild=args.force_rebuild,
-    )
-    domain_freq = build_in_domain_frequency(segments_df)
-
-    print("Step 2) Load target word list...")
-    wordlist_file = args.wordlist_file
-    if wordlist_file is None:
-        # Auto-detect the assignment-provided unique-words file in data/
-        for candidate in [
-            repo_root / "data" / "Unique Words Data - Sheet1.csv",
-            repo_root.parent / "Unique Words Data - Sheet1.csv",
-        ]:
-            if candidate.exists():
-                wordlist_file = candidate
-                print(f"  Auto-detected unique-words file: {candidate}")
-                break
-    if wordlist_file and wordlist_file.exists():
-        words = load_word_list(wordlist_file.resolve(), args.word_column)
-        word_source = wordlist_file.resolve().as_posix()
+    classification_path = work_dir / "word_classification_with_confidence.csv"
+    if classification_path.exists() and args.manual_review_file:
+        print(f"Loading existing classification from {classification_path}...")
+        classified_df = pd.read_csv(classification_path)
+        word_source = "cached_classification_results"
+        domain_lexicon_size = 0
+        fleurs_lexicon_size = 0
+        reference_lexicon_size = 0
+        recordings_requested = 0
+        segments_kept = 0
     else:
-        words = sorted(domain_freq.keys())
-        word_source = "derived_from_transcript_corpus"
+        print("Step 1) Build in-domain transcript evidence...")
+        segments_df, preprocess_summary = preprocess_dataset(
+            manifest_csv=manifest_csv,
+            work_dir=work_dir,
+            min_segment_sec=args.min_segment_sec,
+            max_segment_sec=args.max_segment_sec,
+            max_recordings=args.max_recordings,
+            force_rebuild=args.force_rebuild,
+        )
+        domain_freq = build_in_domain_frequency(segments_df)
 
-    if not words:
-        raise RuntimeError(
-            "No words available for Q3 classification. Check `--wordlist-file` contents or corpus preprocessing output."
+        print("Step 2) Load target word list...")
+        wordlist_file = args.wordlist_file
+        if wordlist_file is None:
+            # Auto-detect the assignment-provided unique-words file in data/
+            for candidate in [
+                repo_root / "data" / "Unique Words Data - Sheet1.csv",
+                repo_root.parent / "Unique Words Data - Sheet1.csv",
+            ]:
+                if candidate.exists():
+                    wordlist_file = candidate
+                    print(f"  Auto-detected unique-words file: {candidate}")
+                    break
+        if wordlist_file and wordlist_file.exists():
+            words = load_word_list(wordlist_file.resolve(), args.word_column)
+            word_source = wordlist_file.resolve().as_posix()
+        else:
+            words = sorted(domain_freq.keys())
+            word_source = "derived_from_transcript_corpus"
+
+        if not words:
+            raise RuntimeError(
+                "No words available for Q3 classification. Check `--wordlist-file` contents or corpus preprocessing output."
+            )
+
+        print("Step 3) Build lexical evidence sources...")
+        domain_lexicon, fleurs_lexicon, reference_lexicon = build_reference_lexicons(
+            domain_freq=domain_freq,
+            use_fleurs_lexicon=use_fleurs_lexicon,
+            max_fleurs_per_split=args.max_fleurs_per_split,
         )
 
-    print("Step 3) Build lexical evidence sources...")
-    domain_lexicon, fleurs_lexicon, reference_lexicon = build_reference_lexicons(
-        domain_freq=domain_freq,
-        use_fleurs_lexicon=use_fleurs_lexicon,
-        max_fleurs_per_split=args.max_fleurs_per_split,
-    )
-
-    print("Step 4) Classify words with confidence + reason...")
-    classified_df = classify_all_words(
-        words=words,
-        domain_freq=domain_freq,
-        domain_lexicon=domain_lexicon,
-        fleurs_lexicon=fleurs_lexicon,
-        reference_lexicon=reference_lexicon,
-    )
-    classified_df = classified_df.sort_values(["word"]).reset_index(drop=True)
-
-    classification_path = work_dir / "word_classification_with_confidence.csv"
-    classified_df.to_csv(classification_path, index=False)
+        print("Step 4) Classify words with confidence + reason...")
+        classified_df = classify_all_words(
+            words=words,
+            domain_freq=domain_freq,
+            domain_lexicon=domain_lexicon,
+            fleurs_lexicon=fleurs_lexicon,
+            reference_lexicon=reference_lexicon,
+        )
+        classified_df = classified_df.sort_values(["word"]).reset_index(drop=True)
+        classified_df.to_csv(classification_path, index=False)
+        
+        domain_lexicon_size = len(domain_lexicon)
+        fleurs_lexicon_size = len(fleurs_lexicon)
+        reference_lexicon_size = len(reference_lexicon)
+        recordings_requested = preprocess_summary["recordings_requested"]
+        segments_kept = preprocess_summary["segments_kept"]
 
     google_sheet_df = classified_df[["word", "predicted_label"]].rename(columns={"predicted_label": "spelling_label"})
     google_sheet_path = work_dir / "google_sheet_ready_word_labels.csv"
@@ -704,7 +719,9 @@ def run_pipeline(args: argparse.Namespace) -> None:
             "Increase input word coverage or adjust classification sensitivity."
         )
     review_sample_path = work_dir / "low_confidence_review_sample.csv"
-    review_sample_df.to_csv(review_sample_path, index=False)
+    if not review_sample_path.exists():
+        review_sample_df.to_csv(review_sample_path, index=False)
+
     if not args.allow_proxy_review and (not args.manual_review_file or not args.manual_review_file.exists()):
         raise RuntimeError(
             f"Low-confidence review sample generated at {review_sample_path}. "
@@ -737,11 +754,11 @@ def run_pipeline(args: argparse.Namespace) -> None:
     approach_summary = {
         "word_source": word_source,
         "use_fleurs_lexicon": use_fleurs_lexicon,
-        "domain_lexicon_size": len(domain_lexicon),
-        "fleurs_lexicon_size": len(fleurs_lexicon),
-        "reference_lexicon_size": len(reference_lexicon),
-        "recordings_requested": preprocess_summary["recordings_requested"],
-        "segments_kept": preprocess_summary["segments_kept"],
+        "domain_lexicon_size": domain_lexicon_size,
+        "fleurs_lexicon_size": fleurs_lexicon_size,
+        "reference_lexicon_size": reference_lexicon_size,
+        "recordings_requested": recordings_requested,
+        "segments_kept": segments_kept,
     }
 
     summary_payload = {

@@ -1,0 +1,6 @@
+{
+  "baseline_eval_wer_percent": 130.377,
+  "finetuned_eval_wer_percent": 57.739,
+  "baseline_fleurs_wer_percent": 71.441,
+  "finetuned_fleurs_wer_percent": 54.474
+}

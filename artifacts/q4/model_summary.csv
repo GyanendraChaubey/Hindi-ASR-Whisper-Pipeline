@@ -1,0 +1,7 @@
+model,utterances,rigid_wer_percent,lattice_wer_percent,delta_wer_percent,improved_utterances,unchanged_utterances,worsened_utterances
+Model H,46,2.812,0.367,2.445,12,34,0
+Model i,46,0.489,0.0,0.489,4,42,0
+Model k,46,8.68,1.834,6.846,24,22,0
+Model l,46,8.68,0.733,7.946,30,16,0
+Model m,46,16.504,2.2,14.303,39,7,0
+Model n,46,10.636,0.978,9.658,29,17,0

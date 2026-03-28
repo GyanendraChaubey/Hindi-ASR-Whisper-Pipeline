@@ -1,0 +1,54 @@
+{
+  "total_unique_words_processed": 161327,
+  "predicted_correct_spelling_count": 122250,
+  "predicted_incorrect_spelling_count": 39077,
+  "confidence_distribution": {
+    "low": 147969,
+    "high": 7609,
+    "medium": 5749
+  },
+  "approach_summary": {
+    "word_source": "cached_classification_results",
+    "use_fleurs_lexicon": false,
+    "domain_lexicon_size": 0,
+    "fleurs_lexicon_size": 0,
+    "reference_lexicon_size": 0,
+    "recordings_requested": 0,
+    "segments_kept": 0
+  },
+  "review_summary": {
+    "review_mode": "manual",
+    "reviewed_samples": 42,
+    "right_predictions": 30,
+    "wrong_predictions": 12,
+    "accuracy_percent": 71.429,
+    "category_breakdown": [
+      {
+        "category": "rare_or_name_ambiguous",
+        "reviewed": 17,
+        "wrong": 12,
+        "error_rate_percent": 70.588
+      },
+      {
+        "category": "suspicious_form",
+        "reviewed": 25,
+        "wrong": 0,
+        "error_rate_percent": 0.0
+      }
+    ],
+    "unreliable_categories": [
+      {
+        "category": "rare_or_name_ambiguous",
+        "why_unreliable": "Rare word with weak evidence; may be valid proper noun or may be misspelling.",
+        "reviewed": 17,
+        "error_rate_percent": 70.588
+      },
+      {
+        "category": "suspicious_form",
+        "why_unreliable": "Word has suspicious orthographic pattern (matra/halant/repetition) without strong supporting evidence.",
+        "reviewed": 25,
+        "error_rate_percent": 0.0
+      }
+    ]
+  }
+}
